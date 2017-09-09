@@ -8,27 +8,39 @@ import java.util.Random;
 
 public class Game extends Canvas implements Runnable {
     private static final long serialVersionUID = 1550691097823471818L;
-    public static final int WIDTH = 640;
-    public static final int HEIGHT = 477;
+
+    public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+
     private Thread thread;
     private boolean running = false;
+
     private Random r;
     private Handler handler = new Handler();
     private HUD hud;
 
     public Game() {
+        handler = new Handler();
         this.addKeyListener(new KeyInput(this.handler));
+
         new Window(640, 477, "Let's Build a Game", this);
-        this.hud = new HUD();
-        this.r = new Random();
-        this.handler.addObject(new Player(288, 206, ID.Player));
-        this.handler.addObject(new BasicEnemy(this.r.nextInt(640), this.r.nextInt(477), ID.BasicEnemy));
+
+        hud = new HUD();
+
+        r = new Random();
+
+        handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler));
+        handler.addObject(new BasicEnemy(this.r.nextInt(WIDTH), this.r.nextInt(HEIGHT), ID.BasicEnemy, handler));
+        handler.addObject(new BasicEnemy(this.r.nextInt(WIDTH), this.r.nextInt(HEIGHT), ID.BasicEnemy, handler));
+        handler.addObject(new BasicEnemy(this.r.nextInt(WIDTH), this.r.nextInt(HEIGHT), ID.BasicEnemy, handler));
+        handler.addObject(new BasicEnemy(this.r.nextInt(WIDTH), this.r.nextInt(HEIGHT), ID.BasicEnemy, handler));
+        handler.addObject(new BasicEnemy(this.r.nextInt(WIDTH), this.r.nextInt(HEIGHT), ID.BasicEnemy, handler));
+
     }
 
     public synchronized void start() {
-        this.thread = new Thread(this);
-        this.thread.start();
-        this.running = true;
+        thread = new Thread(this);
+        thread.start();
+        running = true;
     }
 
     public synchronized void stop() {

@@ -1,25 +1,37 @@
 package com.tutorial.main;
 
 import java.awt.Color;
+import java.awt.Rectangle;
 import java.awt.Graphics;
 
 public class BasicEnemy extends GameObject {
-    public BasicEnemy(int x, int y, ID id) {
+
+    private Handler handler;
+
+
+    public BasicEnemy(int x, int y, ID id, Handler handler) {
         super(x, y, id);
-        this.velX = 5;
-        this.velY = 5;
+
+        this.handler = handler;
+
+        velX = 5;
+        velY = 5;
     }
 
-    public void tick() {
-        this.x += this.velX;
-        this.y += this.velY;
-        if (this.y <= 0 || this.y >= 445) {
-            this.velY *= -1;
-        }
+    // the mask for the BasicEnemy
+    public Rectangle getBounds(){
+        return new Rectangle(x, y, 16, 16);
+    }
 
-        if (this.x <= 0 || this.x >= 624) {
-            this.velX *= -1;
-        }
+
+    public void tick() {
+        x += velX;
+        y += velY;
+
+        if (y <= 0 || y >= Game.HEIGHT - 32) velY *= -1;
+        if (x <= 0 || x >= Game.WIDTH - 16) velX *= -1;
+
+        handler.addObject(new Trail(x, y, ID.Trail, Color.red, 16, 16, 0.02f, handler));
 
     }
 

@@ -4,13 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class HUD {
+
+    // its always 100 not more or less
     public static int HEALTH = 100;
 
-    public HUD() {
-    }
-
     public void tick() {
-        --HEALTH;
         HEALTH = Game.clamp(HEALTH, 0, 100);
     }
 
