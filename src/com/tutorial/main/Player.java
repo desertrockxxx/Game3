@@ -37,7 +37,7 @@ public class Player extends GameObject {
             GameObject tempObject = handler.object.get(i);
 
             // if tempObject is BasicEnemy
-            if(tempObject.getId() == ID.BasicEnemy){
+            if(tempObject.getId() == ID.BasicEnemy || tempObject.getId() == ID.FastEnemy)dw{
                 // what to do if they collide/intersect
                 if(getBounds().intersects(tempObject.getBounds())){
                     // Lose Health
