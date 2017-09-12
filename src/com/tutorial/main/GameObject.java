@@ -1,63 +1,46 @@
 package com.tutorial.main;
-
 import java.awt.Graphics;
 import java.awt.Rectangle;
-
 public abstract class GameObject {
-    protected int x;
-    protected int y;
+    protected float x,y;
     protected ID id;
-    protected int velX;
-    protected int velY;
-
-    public GameObject(int x, int y, ID id) {
+    protected float velX, velY;
+    public GameObject(float x, float y, ID id){
         this.x = x;
         this.y = y;
         this.id = id;
     }
-
     public abstract void tick();
     public abstract void render(Graphics g);
-    // if two Rectangle intersect eachother it turns true
     public abstract Rectangle getBounds();
-
-    public void setX(int x) {
+    public void setX(int x){
         this.x = x;
     }
-
-    public void setY(int y) {
+    public void setY(int y){
         this.y = y;
     }
-
-    public int getX() {
-        return this.x;
+    public float getX(){
+        return x;
     }
-
-    public int getY() {
-        return this.y;
+    public float getY(){
+        return y;
     }
-
-    public void setId(ID id) {
+    public void setID(ID id){
         this.id = id;
     }
-
-    public ID getId() {
-        return this.id;
+    public ID getId(){
+        return id;
     }
-
-    public void setVelX(int velX) {
+    public void setVelX(int velX){
         this.velX = velX;
     }
-
-    public int getVelX() {
-        return this.velX;
-    }
-
-    public void setVelY(int velY) {
+    public void setVelY(int velY){
         this.velY = velY;
     }
-
-    public int getvelY() {
-        return this.velY;
+    public float getVelX(){
+        return velX;
+    }
+    public float getVelY(){
+        return velY;
     }
 }
